@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from controller.email_automation_controller import process_combined_data
-from model.email_automation_model import CombinedData
+from src.controller.email_automation_controller import process_combined_data
+from src.model.email_automation_model import CombinedData
 
 email_router = APIRouter()
 

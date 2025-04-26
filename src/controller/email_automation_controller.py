@@ -5,7 +5,7 @@ import pandas as pd
 import base64
 from io import BytesIO
 
-from model.email_automation_model import CombinedData
+from src.model.email_automation_model import CombinedData
 
 class EmailController:
     def __init__(self, smtp_server, smtp_port, smtp_email, smtp_password, sender_email, subject, message):
