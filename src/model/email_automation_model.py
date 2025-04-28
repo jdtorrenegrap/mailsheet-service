@@ -8,11 +8,11 @@ class SmtpConfig(BaseModel):
 
 class EmailData(BaseModel):
     subject: str
-    message: str
+    body: str
     excel_file: str
     sheet_name: str
-    column_x: str
-    column_y: str
+    recipient_column: str
+    subject_column: str
 
 class CombinedData(BaseModel):
     smtp_config: SmtpConfig
