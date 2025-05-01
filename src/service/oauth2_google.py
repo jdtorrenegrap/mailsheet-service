@@ -31,13 +31,11 @@ class OAuth2Google:
 
         if user:
             jwt_token = TokenJwt.create_access_token(data=user)
-            print(jwt_token)
-            streamlit_url = f"http://localhost:8502?token={jwt_token}"
-            return RedirectResponse(url=streamlit_url)
+            return {"access_token": jwt_token,}
 
         return {"error": "Authentication failed."}
     
     # Cerrar sesión
     async def logout(self, request: Request):
         request.session.clear()
-        return RedirectResponse("/")
+        return RedirectResponse("http://localhost:8000/auth/login")

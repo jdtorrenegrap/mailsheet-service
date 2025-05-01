@@ -1,19 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.sessions import SessionMiddleware
+
 from src.routes.login_router import login_router
 from src.routes.email_router import email_router
-from starlette.middleware.sessions import SessionMiddleware  # Importa si vas a usar sesiones
+from src.core.config import Settings
 
 def create_app() -> FastAPI:
     app = FastAPI()
 
     # Middleware para sesiones (si usas OAuth con cookies)
-    app.add_middleware(SessionMiddleware, secret_key="tu_secreto_super_seguro")
+    app.add_middleware(SessionMiddleware, secret_key=Settings.SECRET_KEY_COOKIE)
     
     # Middleware CORS
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Permitir solicitudes desde cualquier origen
+        allow_origins=["http://localhost:8501"],
         allow_credentials=True,
         allow_methods=["*"],  # Permitir todos los métodos
         allow_headers=["*"],  # Permitir todos los headers

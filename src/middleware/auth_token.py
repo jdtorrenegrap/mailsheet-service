@@ -9,8 +9,6 @@ ALGORITHM = Settings.ALGORITHM
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-# Esto es  para la autenticación de JWT en las rutas
-# que requieren autenticación. El token se espera en el header de la solicitud.
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
